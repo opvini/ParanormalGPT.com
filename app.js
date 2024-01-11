@@ -19,7 +19,7 @@ const { MongoClient, ObjectId } = require("mongodb");
 
 const EXPIRING_EMAIL_TIME_HOURS = 24;
 const MESSAGE_ENCRYPT_KEY       = 17;
-const MAIL_FLAG_PRODUCTION      = config.flag_production;
+const MAIL_FLAG_PRODUCTION      = process.env.PGPT_PROD_ENV;
 
 // serve static files in public folder
 app.use(express.static('public'));

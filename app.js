@@ -9,7 +9,9 @@ const os         = require('os');
 const path       = require('path');
 const axios      = require('axios');
 
-// dotev to handle secrets
+// dotev load env var from .env file - to handle secrets
+// if the environment variables are already set then
+// this line can be removed
 require('dotenv').config();
 
 // local configuration variables

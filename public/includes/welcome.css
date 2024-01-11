@@ -1,0 +1,46 @@
+.masthead.segment {
+    height: 100%;
+    padding: 1em 0em;
+  }
+
+  .masthead h1.ui.header {
+    margin-top: 3em;
+    margin-bottom: 0em;
+    font-size: 4em;
+    font-weight: normal;
+  }
+
+  .masthead h2 {
+    font-size: 1.7em;
+    font-weight: normal;
+    margin-top: 0;
+  }
+
+  #para-input-email {
+    left: -10%;
+    width: 300px;
+  }
+
+  @media only screen and (max-width: 700px) {
+    .masthead h1.ui.header {
+      font-size: 2em;
+    }
+
+    .masthead h2 {
+      font-size: 1.3em;
+      font-weight: normal;
+    }
+
+    #para-input-email {
+      left: -15%;
+      width: 200px;
+    }
+  }
+
+  #para-dropbox-language{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    z-index: 99;
+    color: aliceblue;
+  }

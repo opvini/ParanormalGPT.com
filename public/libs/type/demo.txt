@@ -1,0 +1,2 @@
+https://github.com/stvwhtly/jquery-teletype-plugin
+https://www.jqueryscript.net/demo/Terminal-like-Text-Typing-Effect-with-jQuery-Teletype/

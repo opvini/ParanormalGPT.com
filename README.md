@@ -1,10 +1,16 @@
 # ParanormalGPT.com
 - For the users:
-- ParanormalGPT is the only chat-bot in the world able to answer questions that no other one can!
+- Unveiling ParanormalGPT, the solitary chat-bot that thrives on unraveling questions no other dares to attempt!
 - Questions such as "what is the colour of my t-shirt" or "what did I eat today for breakfast"...
-- The chat-bot can answer questions never stored anywhere.
+- Tapping into the ethereal, it crafts answers never before stored.
 - if the answers resides in the master's mind, ParanormalGPT impressively extracts and unveils the concealed knowledge, leaving all in awe!
 - Impressive, no? XD
+
+## Why I Developed It
+- I wanted to learn and practice new technologies that I didn't have experience such as Node.js, multi-language app and cloud.
+- Also I wanted to understand better about how to scale applications, so it was a great opportunity to learn about:
+-- distributed databases with MongoDB
+-- distributes apps with microservices using Kubernetes and Docker.
 
 ## Development
 - ParanormalGPT is a chat-bot (web-app) developed in Node.js and MongoDB.

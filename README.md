@@ -1,5 +1,8 @@
 # ParanormalGPT.com
-ParanormalGPT is a chat-bot developed in Node.js and MongoDB.
+The only chat-bot in the world who can answer questions not stored anywhere, only in the masters minds.
+
+## Development
+ParanormalGPT is a chat-bot (web-app) developed in Node.js and MongoDB.
 For its front end, it uses Semantic-UI and javascript with jQuery.
 The web-app is responsive, so it works well in a PC or in mobile devices.
 

@@ -1,1 +1,2 @@
-# ParanormalGPT.com
+# ParanormalGPT
+ParanormalGPT.com

@@ -9,8 +9,8 @@
 ## Why I Developed It
 - I wanted to learn and practice new technologies that I didn't have experience such as Node.js, multi-language app and cloud.
 - Also I wanted to understand better about how to scale applications, so it was a great opportunity to learn about:
--- distributed databases with MongoDB
--- distributes apps with microservices using Kubernetes and Docker.
+ - distributed databases with MongoDB
+ - distributes apps with microservices using Kubernetes and Docker.
 
 ## Development
 - ParanormalGPT is a chat-bot (web-app) developed in Node.js and MongoDB.

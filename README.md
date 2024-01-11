@@ -1,16 +1,16 @@
 # ParanormalGPT.com
- The only chat-bot in the world who can answer questions not stored anywhere, only in the masters minds.
+- The only chat-bot in the world who can answer questions not stored anywhere, only in the masters minds.
 
 ## Development
- ParanormalGPT is a chat-bot (web-app) developed in Node.js and MongoDB.
- For its front end, it uses Semantic-UI and javascript with jQuery.
- The web-app is responsive, so it works well in a PC or in mobile devices.
+- ParanormalGPT is a chat-bot (web-app) developed in Node.js and MongoDB.
+- For its front end, it uses Semantic-UI and javascript with jQuery.
+- The web-app is responsive, so it works well in a PC or in mobile devices.
 
 ## Storing Data
- To store data persistently, the web-app uses MongoDB Atlas, a cloud solution provided by MongoDB.
+- To store data persistently, the web-app uses MongoDB Atlas, a cloud solution provided by MongoDB.
 
 ## Sending Emails
- In order to send emails, the web-app can use authenticated SMTP or a local provider via nodemailer package.
+- In order to send emails, the web-app can use authenticated SMTP or a local provider via nodemailer package.
 
 ## Environment Variables Needs to be Set
  The following environment variables needs to be set in order to allow the web-app to send emails and to store data in MongoDB clusters.

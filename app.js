@@ -14,9 +14,6 @@ const axios      = require('axios');
 // this line can be removed
 require('dotenv').config();
 
-// local configuration variables
-const config = require('./config');
-
 const { MongoClient, ObjectId } = require("mongodb");
 
 const EXPIRING_EMAIL_TIME_HOURS = 24;

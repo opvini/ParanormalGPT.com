@@ -1,5 +1,5 @@
 # ParanormalGPT.com
-- For the users:
+For the users:
 - Unveiling ParanormalGPT, the solitary chat-bot that thrives on unraveling questions no other dares to attempt!
 - Questions such as "what is the colour of my t-shirt" or "what did I eat today for breakfast"...
 - Tapping into the ethereal, it crafts answers never before stored.
@@ -9,8 +9,10 @@
 ## Why I Developed It
 - I wanted to learn and practice new technologies that I didn't have experience such as Node.js, multi-language app and cloud.
 - Also I wanted to understand better about how to scale applications, so it was a great opportunity to learn about:
- - distributed databases with MongoDB
- - distributes apps with microservices using Kubernetes and Docker.
+    - distributed databases with MongoDB
+    - distributes apps with microservices using Kubernetes and Docker
+- The goal was not to apply best practices of programing langauges but to learn about the technologies
+- You will find some creepy code, so feel free to contribute to improve it ;)
 
 ## Development
 - ParanormalGPT is a chat-bot (web-app) developed in Node.js and MongoDB.

@@ -20,3 +20,14 @@ EXPOSE 8054
 
 # Command to run your application
 CMD [ "node", "app.js" ]
+
+
+
+## Build the image:
+#  docker build -t paranormalgpt-image .
+
+## Run the image exposing the port
+#  docker run -p 8054:8054 -d paranormalgpt-image
+
+## Run the image with iterative shell
+#  docker run -it -p 8054:8054 paranormalgpt-image sh

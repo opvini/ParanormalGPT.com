@@ -39,4 +39,7 @@ For the users:
 - PGPT_MAIL_PASS = 
 - PGPT_SMTP_USER = 
 - PGPT_SMTP_HOST = 
-- PGPT_SMTP_PORT = 
+- PGPT_SMTP_PORT =
+
+## Details About the Development
+https://docs.google.com/document/d/1L2HBPtG-7zMyy876KTvkhst0Tn3ROq8aXCwLrG4MdtI/edit?usp=sharing

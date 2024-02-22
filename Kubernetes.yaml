@@ -71,7 +71,7 @@ spec:
 # minikube cp .env /home/docker/
 
 ## Apply Kubernetes config
-# kubectl apply -f Deployment.yaml
+# kubectl apply -f Kubernetes.yaml
 # kubectl get all
 
 ## Check logs if errors occour in any Pod

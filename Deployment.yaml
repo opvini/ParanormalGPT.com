@@ -80,3 +80,6 @@ spec:
 
 ## Stop the cluster
 # minikube stop
+
+## Remove all pods - good to remove old pods
+# kubectl delete pods --all

@@ -24,7 +24,7 @@ spec:
       volumes:
       - name: env-volume
         hostPath:
-          path: /Users/vinicius.lage/git/ParanormalGPT.com/.env
+          path: /home/docker/.env
 
 ---
 
@@ -60,4 +60,23 @@ spec:
           service:
             name: paranormalgpt-service
             port:
-              number: 80
+              number: 80 # minikube tunnel will expose it - it does not allow other port
+
+
+## Run it locally
+# minikube start
+# minikube tunnel
+
+## Copy .env to Minikube file system - needed for secrets
+# minikube cp .env /home/docker/
+
+## Apply Kubernetes config
+# kubectl apply -f Deployment.yaml
+# kubectl get all
+
+## Check logs if errors occour in any Pod
+# kubectl log <pod>
+# kubectl exec -it <pod-name> -- /bin/sh
+
+## Stop the cluster
+# minikube stop

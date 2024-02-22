@@ -13,7 +13,51 @@ spec:
         app: paranormalgpt-app
     spec:
       containers:
-      - name: paranormalgpt-app-container
+      - name: paranormalgpt-container
         image: viniciusop/paranormalgpt.com:v0.1.0
         ports:
-        - containerPort: 8054 # Node.js app listens on port 8054
+        - containerPort: 8054
+        volumeMounts:
+        - name: env-volume
+          mountPath: /paranormalgpt.com/.env
+          readOnly: true
+      volumes:
+      - name: env-volume
+        hostPath:
+          path: /Users/vinicius.lage/git/ParanormalGPT.com/.env
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: paranormalgpt-service
+spec:
+  selector:
+    app: paranormalgpt-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8054
+  type: NodePort
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: paranormalgpt-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: localhost
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: paranormalgpt-service
+            port:
+              number: 80

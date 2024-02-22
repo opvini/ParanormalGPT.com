@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paranormalgpt-app-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: paranormalgpt-app
+  template:
+    metadata:
+      labels:
+        app: paranormalgpt-app
+    spec:
+      containers:
+      - name: paranormalgpt-app-container
+        image: viniciusop/paranormalgpt.com:v0.1.0
+        ports:
+        - containerPort: 8054 # Node.js app listens on port 8054

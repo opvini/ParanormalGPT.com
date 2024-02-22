@@ -27,10 +27,13 @@ CMD [ "node", "app.js" ]
 #  docker build -t paranormalgpt-image .
 
 ## Run the image exposing the port and mouting .env file with secrets
-#  docker run -p 8054:8054 -d -v /Users/vinicius.lage/git/ParanormalGPT.com/.env:/paranormalgpt.com/.env paranormalgpt-image
+#  docker run --name paranormalgpt-container -p 8054:8054 -d -v /Users/vinicius.lage/git/ParanormalGPT.com/.env:/paranormalgpt.com/.env paranormalgpt-image
+
+## Alternatively: run the image from Docker registry
+# docker run --name paranormalgpt-container -p 8054:8054 -d -v /Users/vinicius.lage/git/ParanormalGPT.com/.env:/paranormalgpt.com/.env viniciusop/paranormalgpt.com:v0.1.0
 
 ## Run the image with iterative shell
-#  docker run -it -p 8054:8054 paranormalgpt-image sh
+#  docker run --name paranormalgpt-container -it -p 8054:8054 -d -v /Users/vinicius.lage/git/ParanormalGPT.com/.env:/paranormalgpt.com/.env paranormalgpt-image sh
 
 ## Push the image to Docker hub repository - tag and push it
 # docker tag paranormalgpt-image viniciusop/paranormalgpt.com:v0.1.0

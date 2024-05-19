@@ -11,7 +11,7 @@ For the users:
 - Also I wanted to understand better about how to scale applications, so it was a great opportunity to learn about:
     - distributed databases with MongoDB
     - distributes apps with microservices using Kubernetes and Docker
-- The goal was not to apply best practices of programing langauges but to learn about the technologies
+- The goal was not to apply best practices of programing languages but to learn about the technologies
 - You will find some creepy code, so feel free to contribute to improve it ;)
 
 ## Development
@@ -20,8 +20,8 @@ For the users:
 - The web-app is responsive, so it works well in a PC or in mobile devices.
 - The web-app supports currently 9 languages.
 
-## Storing Data
-- To store data persistently, the web-app uses MongoDB Atlas, a cloud solution provided by MongoDB.
+## Storing the Data
+- To store data persistently, the web-app uses MongoDB Atlas, a cloud solution highly scalable provided by MongoDB.
 
 ## Sending Emails
 - In order to send emails, the web-app can use authenticated SMTP or a local provider via nodemailer package.
@@ -31,7 +31,7 @@ For the users:
 
 ## Environment Variables Needs to be Set
  The following environment variables needs to be set in order to allow the web-app to send emails and to store data in MongoDB clusters.
- For handling environment variables in Node.js, the package "dotenv" is used - an ".env" file can be used to define the env variables.
+ For handling environment variables in Node.js, the package "dotenv" is used - an ".env" file is used to define the env variables.
 
 - PGPT_PROD_ENV  = true
 - PGPT_MDB_URI   = 

@@ -351,6 +351,8 @@ function ParaGPT() {
 		// get the main text field length
 		const txtFieldLength = $(this).val().length;
 
+		alert(e.which);
+
 		// start storing answer only if text field is empty
 		if (e.which == magicChr && cfgComp == 0 && txtFieldLength == 0) {
 			cfgComp = 1;

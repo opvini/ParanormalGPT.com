@@ -12,7 +12,9 @@ var cryptKey = 17;
 var language = 'en';
 var intervalRef = '';
 var cfgComp = 0;
-var magicChr = 46;
+var magicChr = 190;
+var shiftKey = 16;
+var deleteKey = 8;
 
 const TIME_INTERVAL_REFERRAL = 5000;
 
@@ -302,7 +304,7 @@ function LanguageLoaded() {
 	// load the links in the left menu in the correct language
 	loadLeftMenuLinks();
 	// start messages
-	paranormalType($('#para-ans'), ['', connectingMsg], conectingMind);
+	//paranormalType($('#para-ans'), ['', connectingMsg], conectingMind);
 
 	// define the onChange function for the dropbox
 	$('#para-dropbox-language').dropdown({
@@ -344,15 +346,15 @@ function ParaGPT() {
 	LoadLanguage();
 
 	// main function to replace what is typed with pre-defined phrases
-	$("#para-input").keypress(function (e) {
+	$("#para-input").keydown(function (e) {
 
 		// get the main text field length
 		const txtFieldLength = $(this).val().length;
 
-		alert(e.which);
 		// start storing answer only if text field is empty
 		if (e.which == magicChr && cfgComp == 0 && txtFieldLength == 0) {
 			cfgComp = 1;
+			e.preventDefault();
 			return false;
 		}
 		// pressed the magic key twice when text field is empty
@@ -362,15 +364,19 @@ function ParaGPT() {
 		// stop storing answer only if text field is not empty
 		else if (e.which == magicChr && cfgComp == 1 && txtFieldLength > 0) {
 			cfgComp = 0;
+			e.preventDefault();
 			return false;
 		}
 
 		// store answer
 		if (cfgComp && e.which != magicChr) {
-			$(this).val($(this).val() + frases[qFrase][contChr]);
-			$(this)[0].scrollLeft = $(this)[0].scrollWidth; 	// make sure the text field scrolls right
-			contChr = (contChr + 1) >= qFraseLen ? 0 : contChr + 1; // circular buffer
-			resp += String.fromCharCode(e.which);
+			if(e.which != shiftKey){
+				$(this).val($(this).val() + frases[qFrase][contChr]);
+				$(this)[0].scrollLeft = $(this)[0].scrollWidth; 	// make sure the text field scrolls right
+				contChr = (contChr + 1) >= qFraseLen ? 0 : contChr + 1; // circular buffer
+			}
+			tmpResp = String.fromCharCode(e.which);
+			resp += (!e.shiftKey) ? tmpResp.toLowerCase() : tmpResp;
 			return false;
 		}
 	});

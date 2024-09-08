@@ -508,4 +508,3 @@ function changeLanguage(value, text, $selectedItem) {
 
 	} // if selected language is not the same as the current one
 }
-

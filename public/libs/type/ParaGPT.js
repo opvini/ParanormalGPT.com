@@ -19,6 +19,7 @@ var accentKeyMac = 229;
 var shiftKey = 16;
 var deleteKey = 8;
 var capsKey = 20;
+var accentsiPhone = 0;
 
 const TIME_INTERVAL_REFERRAL = 5000;
 
@@ -357,6 +358,7 @@ function ParaGPT() {
 		const txtFieldLength = $(this).val().length;
 
 		//console.log(e.which);
+		//alert(e.which);
 
 		// start storing answer only if text field is empty
 		if (e.which == magicChr && cfgComp == 0 && txtFieldLength == 0) {
@@ -385,17 +387,17 @@ function ParaGPT() {
 				contChr = txtFieldLength-1;
 			}
 			// add fake typing message in the text field
-			else if(e.which != shiftKey && e.which != enterKey && e.which != accentKeyMac && e.which != capsKey){
+			else if(e.which != shiftKey && e.which != enterKey && e.which != accentKeyMac 
+					&& e.which != capsKey && e.which != accentsiPhone ){
 				$(this).val($(this).val() + frases[qFrase][contChr]);
 				$(this)[0].scrollLeft = $(this)[0].scrollWidth; 	// make sure the text field scrolls right
 				contChr = (contChr + 1) >= qFraseLen ? 0 : contChr + 1; // circular buffer
 				// store the hidden answer
 				tmpResp = String.fromCharCode(e.which);
 				resp += (!e.shiftKey) ? tmpResp.toLowerCase() : tmpResp;
-				
 			}
-			// pressed enter - send form
-			else if(e.which == enterKey){
+			// pressed enter or accents in iPhone - send form
+			else if(e.which == enterKey || e.which == accentsiPhone){
 				return true;
 			}
 

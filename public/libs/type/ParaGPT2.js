@@ -13,8 +13,12 @@ var language = 'en';
 var intervalRef = '';
 var cfgComp = 0;
 var magicChr = 190;
+var backspaceKey = 8;
+var enterKey = 13;
+var accentKeyMac = 229;
 var shiftKey = 16;
 var deleteKey = 8;
+var capsKey = 20;
 
 const TIME_INTERVAL_REFERRAL = 5000;
 
@@ -304,7 +308,7 @@ function LanguageLoaded() {
 	// load the links in the left menu in the correct language
 	loadLeftMenuLinks();
 	// start messages
-	//paranormalType($('#para-ans'), ['', connectingMsg], conectingMind);
+	paranormalType($('#para-ans'), ['', connectingMsg], conectingMind);
 
 	// define the onChange function for the dropbox
 	$('#para-dropbox-language').dropdown({
@@ -345,13 +349,14 @@ function ParaGPT() {
 	// load pre-defined language
 	LoadLanguage();
 
+
 	// main function to replace what is typed with pre-defined phrases
 	$("#para-input").keydown(function (e) {
 
 		// get the main text field length
 		const txtFieldLength = $(this).val().length;
 
-		alert(e.which);
+		//console.log(e.which);
 
 		// start storing answer only if text field is empty
 		if (e.which == magicChr && cfgComp == 0 && txtFieldLength == 0) {
@@ -372,13 +377,28 @@ function ParaGPT() {
 
 		// store answer
 		if (cfgComp && e.which != magicChr) {
-			if(e.which != shiftKey){
+
+			// pressed delete while typing answer - delete last char
+			if(e.which == backspaceKey){
+				$(this).val( $(this).val().slice(0, -1) );
+				resp = resp.slice(0, -1);
+				contChr = txtFieldLength-1;
+			}
+			// add fake typing message in the text field
+			else if(e.which != shiftKey && e.which != enterKey && e.which != accentKeyMac && e.which != capsKey){
 				$(this).val($(this).val() + frases[qFrase][contChr]);
 				$(this)[0].scrollLeft = $(this)[0].scrollWidth; 	// make sure the text field scrolls right
 				contChr = (contChr + 1) >= qFraseLen ? 0 : contChr + 1; // circular buffer
+				// store the hidden answer
+				tmpResp = String.fromCharCode(e.which);
+				resp += (!e.shiftKey) ? tmpResp.toLowerCase() : tmpResp;
+				
 			}
-			tmpResp = String.fromCharCode(e.which);
-			resp += (!e.shiftKey) ? tmpResp.toLowerCase() : tmpResp;
+			// pressed enter - send form
+			else if(e.which == enterKey){
+				return true;
+			}
+
 			return false;
 		}
 	});

@@ -287,7 +287,7 @@ function enviaForm() {
 	ajaxSendData(question);
 
 	// type the pre-defined answer and the answer
-	paranormalType($('#para-ans-' + newDivId), ['', preAns[qAns], ' ' + resp + '!', '']);
+	paranormalType($('#para-ans-' + newDivId), ['', preAns[qAns], ' ^2000' + resp + '!', '']);
 
 	// clean the form and the answer for the next question
 	$("#para-input").val("");

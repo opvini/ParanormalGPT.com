@@ -20,6 +20,7 @@ var shiftKey = 16;
 var deleteKey = 8;
 var capsKey = 20;
 var accentsiPhone = 0;
+var isComposing = false;
 
 const TIME_INTERVAL_REFERRAL = 5000;
 
@@ -324,6 +325,23 @@ function LoadLanguage() {
 	LoadLanguageJs(language, LanguageLoaded);
 }
 
+function isAndroid() {
+    return /Android/i.test(navigator.userAgent);
+}
+
+function handleTyping(typedChar, targetChar){
+
+}
+
+function addCharAnswer(inputField){
+	let lastChar = inputField.val().slice(- 1);
+	inputField.val( inputField.val().slice(0, -1) ); // remove typed char
+	inputField.val( inputField.val() + frases[qFrase][contChr]); // include fake char
+	inputField[0].scrollLeft = inputField.scrollWidth; 	// make sure the text field scrolls right
+	contChr = (contChr + 1) >= qFraseLen ? 0 : contChr + 1; // circular buffer
+	resp += lastChar;
+}
+
 // called when document is ready
 function ParaGPT() {
 	// assign the form to be sent when pressing enter
@@ -351,101 +369,64 @@ function ParaGPT() {
 	LoadLanguage();
 
 
-	// main function to replace what is typed with pre-defined phrases
-	$("#para-input").keydown(function (e) {
+	// for accented chars - composing
+	$("#para-input").on('compositionstart', function() {
+		isComposing = true;
+	});
 
-		// get the main text field length
-		const txtFieldLength = $(this).val().length;
-
-		//console.log(e.which);
-		//alert(e.which);
-
-		// start storing answer only if text field is empty
-		if (e.which == magicChr && cfgComp == 0 && txtFieldLength == 0) {
-			cfgComp = 1;
-			e.preventDefault();
-			return false;
-		}
-		// pressed the magic key twice when text field is empty
-		else if (e.which == magicChr && cfgComp == 1 && txtFieldLength == 0) {
-			cfgComp = 0;
-		}
-		// stop storing answer only if text field is not empty
-		else if (e.which == magicChr && cfgComp == 1 && txtFieldLength > 0) {
-			cfgComp = 0;
-			e.preventDefault();
-			return false;
-		}
-
-		// store answer
-		if (cfgComp && e.which != magicChr) {
-
-			// pressed delete while typing answer - delete last char
-			if(e.which == backspaceKey){
-				$(this).val( $(this).val().slice(0, -1) );
-				resp = resp.slice(0, -1);
-				contChr = txtFieldLength-1;
-			}
-			// add fake typing message in the text field
-			else if(e.which != shiftKey && e.which != enterKey && e.which != accentKeyMac 
-					&& e.which != capsKey && e.which != accentsiPhone ){
-				$(this).val($(this).val() + frases[qFrase][contChr]);
-				$(this)[0].scrollLeft = $(this)[0].scrollWidth; 	// make sure the text field scrolls right
-				contChr = (contChr + 1) >= qFraseLen ? 0 : contChr + 1; // circular buffer
-				// store the hidden answer
-				tmpResp = String.fromCharCode(e.which);
-				resp += (!e.shiftKey) ? tmpResp.toLowerCase() : tmpResp;
-			}
-			// pressed enter or accents in iPhone - send form
-			else if(e.which == enterKey || e.which == accentsiPhone){
-				return true;
-			}
-
-			return false;
+	$("#para-input").on('compositionend', function(e) {
+		isComposing = false;
+		if (cfgComp) {
+			addCharAnswer($(this))
 		}
 	});
 
-	// clean the response if the input is cleaned
-	$("#para-input").on('keyup', function (e) {
+	$("#para-input").on('input', function() { 
+		
+		// if any accented char is being composed ignore everything
+		if(isComposing) return true;
 
-		var currentValue = $(this).val();
-		var accentuatedCharacters = [
-			'à', 'á', 'â', 'ã', 'ä', 'å', 'æ',
-			'ç',
-			'è', 'é', 'ê', 'ë',
-			'ì', 'í', 'î', 'ï',
-			'ð', 'ñ',
-			'ò', 'ó', 'ô', 'õ', 'ö', 'ø',
-			'ù', 'ú', 'û', 'ü',
-			'ý', 'ÿ',
-			'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ',
-			'Ç',
-			'È', 'É', 'Ê', 'Ë',
-			'Ì', 'Í', 'Î', 'Ï',
-			'Ð', 'Ñ',
-			'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'Ø',
-			'Ù', 'Ú', 'Û', 'Ü',
-			'Ý',
-			'ß',
-			'œ', 'Œ',
-			'å', 'Å',
-			'ø', 'Ø'
-		];
+		let inputField 	   = $(this);
+		let currentValue   = inputField.val();
+		let txtFieldLength = inputField.val().length;
+		let lastChar 	   = currentValue.slice(- 1);
 
-		// clean the answer in case of text field is empty
-		if (currentValue.length == 0) {
-			resp = "";
+		// always reset if text field is empty
+		if(txtFieldLength == 0){
+			cfgComp = 0;
 			contChr = 0;
+			resp = '';
 		}
-		// fix accent issue: when an accentuated char is created typing an answer
-		// hide it
-		else if (cfgComp && 
-				 accentuatedCharacters.includes(currentValue.slice(-1)) &&
-			     currentValue.slice(-1) != frases[qFrase][contChr-1]
-				){
-			resp += currentValue.slice(-1);
-			$(this).val(currentValue.slice(0, -1));
-			$(this).val($("#para-input").val() + frases[qFrase][contChr++]);
+
+		// start storing answer only if text field is empty
+		if (lastChar === '.' && txtFieldLength == 1) {
+			cfgComp = 1;
+			inputField.val( inputField.val().slice(0, -1) );
+			return true;
+		}
+		// pressed the magic key twice when text field is empty
+		else if (lastChar === '.' && cfgComp == 1 && txtFieldLength == 1) {
+			cfgComp = 0;
+			return true;
+		}
+		// stop storing answer only if text field is not empty
+		else if (lastChar === '.' && cfgComp == 1 && txtFieldLength > 1) {
+			cfgComp = 0;
+			inputField.val( inputField.val().slice(0, -1) );
+			return true;
+		}
+
+		// store answer
+		if (cfgComp && lastChar != '.') {
+			// a new char was typed
+			if (currentValue.length > resp.length ) {
+				addCharAnswer(inputField);
+			}
+			// a char is removed (backspace)
+			else if (currentValue.length < resp.length) {
+				resp = resp.slice(0, -1); // Remove the last character
+				contChr = (contChr - 1) <= 0 ? 0 : contChr - 1; // decrease counter char
+			}
 		}
 	});
 

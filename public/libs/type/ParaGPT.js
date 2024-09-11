@@ -399,7 +399,7 @@ function ParaGPT() {
 		}
 
 		// start storing answer only if text field is empty
-		if (lastChar === '.' && txtFieldLength == 1) {
+		if (cfgComp == 0 && lastChar === '.' && txtFieldLength == 1) {
 			cfgComp = 1;
 			inputField.val( inputField.val().slice(0, -1) );
 			return true;

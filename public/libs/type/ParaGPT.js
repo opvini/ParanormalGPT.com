@@ -22,7 +22,8 @@ var capsKey = 20;
 var accentsiPhone = 0;
 var isComposing = false;
 
-const TIME_INTERVAL_REFERRAL = 5000;
+const TIME_INTERVAL_REFERRAL   = 5000;
+const TIME_INTERVAL_CONNECTION = 1000;
 
 
 function getRandomNumber(n) {
@@ -344,6 +345,15 @@ function addCharAnswer(inputField){
 
 // called when document is ready
 function ParaGPT() {
+
+	window.addEventListener('online', function() {
+		console.log("You are back online");
+	});
+	
+	window.addEventListener('offline', function() {
+		console.log("You are now offline");
+	});
+
 	// assign the form to be sent when pressing enter
 	$("#frmPrincipal").submit(function () {
 		if ($("#para-input").val().length > 0) {

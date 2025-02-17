@@ -6,16 +6,20 @@ For the users:
 - if the answers resides in the master's mind, ParanormalGPT impressively extracts and unveils the concealed knowledge, leaving all in awe!
 - Impressive, no? XD
 
+## System Design and Requirements
+[Click here to access the Google Doc](https://docs.google.com/document/d/1L2HBPtG-7zMyy876KTvkhst0Tn3ROq8aXCwLrG4MdtI)
+
 ## Why I Developed It
 - I wanted to learn and practice new technologies that I didn't have experience such as Node.js, multi-language app and cloud.
+- I wanted to practice System Design with a real, small and fun project.
 - Also I wanted to understand better about how to scale applications, so it was a great opportunity to learn about:
-    - distributed databases with MongoDB
+    - distributed databases with MongoDB Atlas
     - distributes apps with microservices using Kubernetes and Docker
 - The goal was not to apply best practices of programing languages but to learn about the technologies
 - You will find some creepy code, so feel free to contribute to improve it ;)
 
 ## Development
-- ParanormalGPT is a chat-bot (web-app) developed in Node.js and MongoDB.
+- ParanormalGPT is a chat-bot (web-app) developed in Node.js and MongoDB Atlas.
 - For its front end, it uses Semantic-UI and javascript with jQuery.
 - The web-app is responsive, so it works well in a PC or in mobile devices.
 - The web-app supports currently 9 languages.
@@ -40,6 +44,3 @@ For the users:
 - PGPT_SMTP_USER = 
 - PGPT_SMTP_HOST = 
 - PGPT_SMTP_PORT =
-
-## Details About the Development
-https://docs.google.com/document/d/1L2HBPtG-7zMyy876KTvkhst0Tn3ROq8aXCwLrG4MdtI/edit?usp=sharing

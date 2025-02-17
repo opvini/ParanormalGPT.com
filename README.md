@@ -7,7 +7,7 @@ For the users:
 - Impressive, no? XD
 
 ## System Design and Requirements
-[Click here to access the Google Doc](https://docs.google.com/document/d/1L2HBPtG-7zMyy876KTvkhst0Tn3ROq8aXCwLrG4MdtI)
+- See all development details and the System Design of it [in this Google Doc](https://docs.google.com/document/d/1L2HBPtG-7zMyy876KTvkhst0Tn3ROq8aXCwLrG4MdtI)
 
 ## Why I Developed It
 - I wanted to learn and practice new technologies that I didn't have experience such as Node.js, multi-language app and cloud.

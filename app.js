@@ -423,7 +423,6 @@ app.get('/', (req, res) => {
 
 // check what what country the user is
 app.post('/whatcountry', (req, res) => {
-
   // TBD: the country should use the user IP, not the server IP
   const userIP = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
   const apiUrl = 'https://api.country.is/' + userIP;
@@ -452,7 +451,6 @@ app.get('/ref/:session', (req, res) => {
 
 // Referrals
 app.post('/countreferrals/', (req, res) => {
-  
   const postData = req.body;
   
   mongodb_count_referrals(postData.session)
@@ -465,9 +463,8 @@ app.post('/countreferrals/', (req, res) => {
 
 });
 
-
+// create a new session with the provided email
 app.post('/newsession/',(req, res) => {
-
   const postData = req.body;
 
   // Validate the email format
@@ -489,8 +486,7 @@ app.post('/newsession/',(req, res) => {
 
 });
 
-
-
+// verify if email is already confirmed in the last 24h
 app.post('/check_open_dialog/',(req, res) => {
   const postData = req.body;
 
@@ -507,7 +503,7 @@ app.post('/check_open_dialog/',(req, res) => {
   
 });
 
-
+// check if the provided code matches with the one sent via email
 app.post('/checkcode/',(req, res) => {
   const postData   = req.body;
   var   funcReturn = false;
@@ -537,11 +533,10 @@ app.post('/checkcode/',(req, res) => {
   .catch(err =>{
     res.json({ success: false });
   });
-  
 
 });
 
-
+// store the question and answer
 app.post('/message/', (req, res) => {
   const postData = req.body;
   const decryptAnswer = decrypt_text(postData.SSID, MESSAGE_ENCRYPT_KEY);
@@ -553,7 +548,6 @@ app.post('/message/', (req, res) => {
   .catch(err => {
     res.json({success: false})
   });
-
   
 })
 

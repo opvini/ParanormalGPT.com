@@ -23,8 +23,12 @@ CMD [ "node", "app.js" ]
 
 
 
-## Build the image:
+## Build the image for the local architecture:
 #  docker build -t paranormalgpt-image .
+
+## Build the image for multiple architectures and push to Docker Hub
+# docker buildx build --platform linux/arm64 -t viniciusop/paranormalgpt.com:v0.1.1 --push .
+
 
 ## Run the image exposing the port and mouting .env file with secrets
 #  docker run --name paranormalgpt-container -p 8054:8054 -d -v /Users/vinicius.lage/git/ParanormalGPT.com/.env:/paranormalgpt.com/.env paranormalgpt-image

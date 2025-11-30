@@ -69,9 +69,6 @@ spec:
 #  --from-file=.env=/home/opvini/git/ParanormalGPT.com/.env
 #
 
-kubectl create secret generic paranormalgpt-env \
-#  --from-file=.env=/home/opvini/git/ParanormalGPT.com/.env
-
 ## Run it locally
 # minikube start
 # minikube tunnel

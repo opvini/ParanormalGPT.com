@@ -19,12 +19,16 @@ spec:
         - containerPort: 8054
         volumeMounts:
         - name: env-volume
-          mountPath: /paranormalgpt.com/.env
+          mountPath: /paranormalgpt.com/.env  # what your app expects
+          subPath: .env                       # mount just the file
           readOnly: true
       volumes:
       - name: env-volume
-        hostPath:
-          path: /home/docker/.env
+        secret:
+          secretName: paranormalgpt-env
+          items:
+          - key: .env
+            path: .env
 
 ---
 
@@ -62,6 +66,10 @@ spec:
             port:
               number: 80 # minikube tunnel will expose it - it does not allow other port
 
+## Create a secret from .env file
+# kubectl create secret generic paranormalgpt-env \
+#  --from-file=.env=/home/opvini/git/ParanormalGPT.com/.env
+#
 
 ## Run it locally
 # minikube start
